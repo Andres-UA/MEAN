@@ -1,0 +1,50 @@
+<div class="container">
+    <div class="row">
+        <div class="col s5">
+            <div class="card">
+                <form #championForm="ngForm" (ngSubmit)="addChampion(championForm)">
+                    <div class="card-content">
+                        <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="championService.selectedChampion._id">
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input type="text" name="name" #name="ngModel" [(ngModel)]="championService.selectedChampion.name" placeholder="Nombre">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input type="url" name="img" #img="ngModel" [(ngModel)]="championService.selectedChampion.img" placeholder="Imagen">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input type="text" name="lane" #lane="ngModel" [(ngModel)]="championService.selectedChampion.lane" placeholder="Linea">
+                            </div>
+                        </div>  
+                    </div>
+                    <div class="card-action">
+                        <button class="btn" type="reset" (click)="resetForm(championForm)" >Limpiar</button>
+                        <button class="btn right" type="submit">Enviar </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="col s7">
+            <div class="row">
+                <div *ngFor="let champion of championService.champions" class="col s12 m3">
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="{{ champion.img }}">
+                            <span class="card-title">{{ champion.name }} </span>                         
+                        </div>
+                        <div class="card-action">
+                            <div class="center-align">
+                                <a (click)="editChampion(champion)"><i class="material-icons">edit</i></a>
+                                <a (click)="deleteChampion(champion._id)"><i class="material-icons">delete</i></a>    
+                            </div>                         
+                        </div>                   
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

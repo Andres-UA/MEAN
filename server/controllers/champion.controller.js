@@ -8,7 +8,11 @@ ChampionController.index = async (req, res) => {
 }
 
 ChampionController.store = async (req, res) => {
-    const champion = new Champion(req.body);
+    const champion = new Champion({
+        name: req.body.name,
+        img: req.body.img,
+        lane: req.body.lane
+    });
     await champion.save();
     res.json({
         "success" : true
